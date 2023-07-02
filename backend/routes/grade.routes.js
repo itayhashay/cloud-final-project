@@ -3,13 +3,13 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new Tutorial
+    // Create a new Grade
     router.post("/", grades.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all Grades
     router.get("/", grades.findAll);
 
-    // Delete a Tutorial with id
+    // Delete a Grade with id
     router.delete("/:id", grades.delete);
 
     app.use('/api/grades', router);
