@@ -1,0 +1,10 @@
+{
+    "api": {
+        "baseUrl": "http://localhost:8081/api/grades",
+        "routes": {
+          "getAllGrades":"/",
+          "createGrade":"/",
+          "deleteGrade":"/"
+        }
+    }
+}
