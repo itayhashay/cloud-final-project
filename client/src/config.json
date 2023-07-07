@@ -1,9 +1,9 @@
 {
     "api": {
-        "baseUrl": "http://localhost:8081/api/grades",
+        "baseUrl": "http://3.66.165.42:8080/api/grades",
         "routes": {
           "getAllGrades":"/",
-          "createGrade":"/",
+          "addNewGrade":"/",
           "deleteGrade":"/"
         }
     }

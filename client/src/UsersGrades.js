@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import DeleteGrade from './DeleteGrade';
 import { useState } from "react";
+import { getAllGrades } from "./api";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,13 +68,24 @@ const users = [
 ];
 
 const UsersGrades = () => {
+    const [studentsGrades, setStudentsGrades] = useState([]);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState({});
 
     const handleClickOpen = (user) => {
+      console.log(user)
         setSelectedUser(user)
         setIsDeleteModalOpen(true);
     };
+
+    useEffect(() => {
+      const fetchGrades = async () => {
+        const grades = await getAllGrades();
+        setStudentsGrades(grades);
+      }
+
+      fetchGrades();
+    }, []);
     
   return (
     <>
@@ -88,10 +100,10 @@ const UsersGrades = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user) => (
+          {studentsGrades.map((user) => (
             <StyledTableRow key={user.id}>
               <StyledTableCell align="left">{user.userId}</StyledTableCell>
-              <StyledTableCell align="left">{user.userName}</StyledTableCell>
+              <StyledTableCell align="left">{user.username}</StyledTableCell>
               <StyledTableCell align="left">{user.grade}</StyledTableCell>
               <StyledTableCell align="left" width="1px">
                 <IconButton aria-label="delete" color="inherit" onClick={() => handleClickOpen(user)}>

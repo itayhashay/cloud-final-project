@@ -7,13 +7,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from "react";
+import { addNewGrade } from "./api";
 
 const AddGrade = ({isOpen, onClose}) => {
-    const [userName, setUserName] = useState("");
+    const [username, setusername] = useState("");
     const [grade, setGrade] = useState();
 
     const onSubmit = () => {
-        console.log({userName, grade})
+        addNewGrade({userId: 123, username, grade}).then(() => onClose())
     }
 
     return (
@@ -31,8 +32,8 @@ const AddGrade = ({isOpen, onClose}) => {
                 fullWidth
                 required
                 variant="standard"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
             />
             <TextField
                 margin="dense"

@@ -14,7 +14,7 @@ export const addNewGrade = async (data) => {
 };
 
 export const deleteGrade = async (id) => {
-    const response = await axios.get(`${config.api.baseUrl}${config.api.routes.deleteGrade}/${id}`);
+    const response = await axios.delete(`${config.api.baseUrl}${config.api.routes.deleteGrade}${id}`);
 
     return response.data;
 };
