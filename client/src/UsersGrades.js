@@ -88,7 +88,7 @@ const UsersGrades = () => {
     }, []);
     
   return (
-    <>
+    <React.Fragment>
     <TableContainer component={Paper} sx={{ width: "100%", height: "fit-content" }}>
       <Table stickyHeader>
         <TableHead>
@@ -116,7 +116,7 @@ const UsersGrades = () => {
       </Table>
     </TableContainer>
     <DeleteGrade isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} selectedUser={selectedUser}/>
-    </>
+    </React.Fragment>
   );
 }
 
