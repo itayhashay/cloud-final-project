@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import './App.css';
 import Content from "./Content";
+import React from 'react';
 
 const containerStyle = {
     width: "100vw",
@@ -12,9 +13,11 @@ const containerStyle = {
 
 function App() {
   return (
+    <React.Fragment>
     <Box sx={containerStyle} id="main-container">
       <Content />
-    </Box>
+      </Box>
+      </React.Fragment>
   );
 }
 
