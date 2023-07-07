@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import UsersGrades from "./UsersGrades";
 import GradingIcon from '@mui/icons-material/Grading';
-import { useState } from "react";
+import React,{ useState } from "react";
 import AddGrade from "./AddGrade";
 
 const containerStyle = {
@@ -26,6 +26,7 @@ const Content = () => {
     };
 
     return (
+        <React.Fragment>
         <Box sx={containerStyle}>
             <Box display="flex" flexDirection="row" justifyContent={"space-between"} width={"100%"}>
                 <Box sx={{ display: "flex", flexDirection: "row", mb: "24px" }}>
@@ -38,7 +39,8 @@ const Content = () => {
             </Box>
             <UsersGrades />
             <AddGrade isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
-        </Box>
+            </Box>
+            </React.Fragment>
     );
 }
  
