@@ -9,12 +9,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from "react";
 import { addNewGrade } from "./api";
 
-const AddGrade = ({isOpen, onClose}) => {
+const AddGrade = ({isOpen, onClose, fetchGrades}) => {
     const [username, setusername] = useState("");
     const [grade, setGrade] = useState();
 
+    const initForm = () => {
+        setusername("")
+        setGrade(undefined);
+    }
+
     const onSubmit = () => {
-        addNewGrade({userId: 123, username, grade}).then(() => onClose())
+        addNewGrade({userId: 123456789, username, grade}).then(() => {
+            initForm();
+            fetchGrades();
+            onClose();
+        })
     }
 
     return (

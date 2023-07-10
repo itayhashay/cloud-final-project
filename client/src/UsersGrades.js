@@ -11,7 +11,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import DeleteGrade from './DeleteGrade';
 import { useState } from "react";
-import { getAllGrades } from "./api";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,56 +33,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const users = [
-    {
-        id: 1,
-        userId: 1,
-        userName: "Itay Daoss",
-        grade: 100
-    },
-    {
-        id: 2,
-        userId: 2,
-        userName: "Moti Lucim",
-        grade: 98
-    },
-    {
-        id: 3,
-        userId: 3,
-        userName: "Israel Lobishvily",
-        grade: 60
-    },
-    {
-        id: 4,
-        userId: 4,
-        userName: "Shiran Away",
-        grade: 72
-    },
-    {
-        id: 5,
-        userId: 5,
-        userName: "Ramzi Abed Ramzi",
-        grade: 101
-    }
-];
-
-const UsersGrades = () => {
-    const [studentsGrades, setStudentsGrades] = useState([]);
+const UsersGrades = ({grades, fetchGrades}) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState({});
 
     const handleClickOpen = (user) => {
-      console.log(user)
         setSelectedUser(user)
         setIsDeleteModalOpen(true);
     };
 
     useEffect(() => {
-      const fetchGrades = async () => {
-        const grades = await getAllGrades();
-        setStudentsGrades(grades);
-      }
-
       fetchGrades();
     }, []);
     
@@ -100,7 +59,7 @@ const UsersGrades = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {studentsGrades.map((user) => (
+          {grades.map((user) => (
             <StyledTableRow key={user.id}>
               <StyledTableCell align="left">{user.userId}</StyledTableCell>
               <StyledTableCell align="left">{user.username}</StyledTableCell>
@@ -115,7 +74,7 @@ const UsersGrades = () => {
         </TableBody>
       </Table>
     </TableContainer>
-    <DeleteGrade isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} selectedUser={selectedUser}/>
+    <DeleteGrade isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} selectedUser={selectedUser} fetchGrades={fetchGrades}/>
     </React.Fragment>
   );
 }

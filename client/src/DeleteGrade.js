@@ -7,9 +7,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { deleteGrade } from './api';
 
-const DeleteGrade = ({isOpen, onClose, selectedUser}) => {
+const DeleteGrade = ({isOpen, onClose, selectedUser, fetchGrades}) => {
   const onSubmit = () => {
-    deleteGrade(selectedUser.id).then(() => onClose())
+    deleteGrade(selectedUser.id).then(() => {
+      fetchGrades();
+      onClose();
+    })
   }
 
   return (

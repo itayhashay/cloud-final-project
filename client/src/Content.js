@@ -3,6 +3,7 @@ import UsersGrades from "./UsersGrades";
 import GradingIcon from '@mui/icons-material/Grading';
 import React,{ useState } from "react";
 import AddGrade from "./AddGrade";
+import { getAllGrades } from "./api";
 
 const containerStyle = {
     width: "45vw",
@@ -19,12 +20,18 @@ const containerStyle = {
 }
 
 const Content = () => {
+    const [studentsGrades, setStudentsGrades] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleClickOpen = () => {
         setIsModalOpen(true);
     };
 
+    const fetchGrades = async () => {
+        const grades = await getAllGrades();        
+        setStudentsGrades(grades);
+      }
+  
     return (
         <React.Fragment>
         <Box sx={containerStyle}>
@@ -37,8 +44,8 @@ const Content = () => {
                 </Box>
                 <Button variant="contained" color="success" sx={{ height: "fit-content" }} onClick={handleClickOpen}>Add +</Button>
             </Box>
-            <UsersGrades />
-            <AddGrade isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+            <UsersGrades grades={studentsGrades} fetchGrades={fetchGrades}/>
+            <AddGrade isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} fetchGrades={fetchGrades}/>
             </Box>
             </React.Fragment>
     );
