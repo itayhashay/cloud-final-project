@@ -1,6 +1,6 @@
 {
     "api": {
-        "baseUrl": "http://35.159.20.115:8080/api/grades",
+        "baseUrl": "http://localhost:8080/api/grades",
         "routes": {
           "getAllGrades":"/",
           "addNewGrade":"/",
